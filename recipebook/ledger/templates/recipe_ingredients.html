@@ -7,10 +7,10 @@
         <h1>Recipe Book</h1>
         <p>Ingredients:</p>
         <ul>
-            {% for ingredients in recipe.ingredients %}
-            <li>{{ ingredients.name }}: {{ ingredients.quantity }}</li>
+            {% for recipeingredient in recipe.recipe.all %}
+            <li>{{ recipeingredient.ingredient.ingredient_name }}: {{ recipeingredient.quantity }}</li>
             {% endfor %}
         </ul>
-        <a href="/recipes/list">Back to Recipes List</a>
+        <a href="{% url 'recipe_list' %}">Back to Recipes List</a>
     </body>
 </html>

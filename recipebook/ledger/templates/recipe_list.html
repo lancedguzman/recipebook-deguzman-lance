@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Lab 1</title>
+    <title>Lab</title>
 </head>
 <body>
         <h1>Recipe Book</h1>
@@ -9,7 +9,7 @@
         <p>Click any of the links below for the recipe:</p>
         <ul>
             {% for recipe in recipes %}
-            <li><a href="/recipe/{{ recipe.id }}">{{ recipe.name }}</a></li>
+            <li><a href="{% url 'recipe_ingredients' recipe.id %}">{{ recipe.recipe_name }}</a></li>
             {% endfor %}
         </ul>
     </body>

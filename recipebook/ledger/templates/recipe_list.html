@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-    <title>Lab</title>
-</head>
-<body>
-        <h1>Recipe Book</h1>
-        <p>Hello! Welcome to your recipe book!</p>
-        <p>Click any of the links below for the recipe:</p>
-        <ul>
-            {% for recipe in recipes %}
-            <li><a href="{% url 'recipe_ingredients' recipe.id %}">{{ recipe.recipe_name }}</a></li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends 'base_template.html' %}
+
+{% block body_content %}
+    <h1>Recipe Book</h1>
+    <p>Hello! Welcome to your recipe book!</p>
+    <p>Click any of the links below for the recipe:</p>
+    <ul>
+        {% for recipe in recipes %}
+        <li><a href="{% url 'recipe_ingredients' recipe.id %}">{{ recipe.recipe_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

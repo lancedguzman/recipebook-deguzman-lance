@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
-    <head>
-        <title>{{ recipe.name }}</title>
-    </head>
-    <body>
+{% extends 'base_template.html' %}
+
+{% block body_content %}
+    <div class="container mt-4">
         <h1>Recipe Book</h1>
+        <p><Strong>Recipe {{ recipe.id }}</Strong></h2>
+        <p><Strong>Author: {{ recipe.recipe_author }}</Strong></p>
         <p>Ingredients:</p>
         <ul>
             {% for recipeingredient in recipe.recipe.all %}
             <li>{{ recipeingredient.ingredient.ingredient_name }}: {{ recipeingredient.quantity }}</li>
             {% endfor %}
         </ul>
-        <a href="{% url 'recipe_list' %}">Back to Recipes List</a>
-    </body>
-</html>
+    </div>
+{% endblock %}

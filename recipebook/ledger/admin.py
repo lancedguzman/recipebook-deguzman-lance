@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Recipe, Ingredient, RecipeIngredient
+from django.contrib.auth.models import User
+from .models import (Recipe, Ingredient,
+                     RecipeIngredient, Profile)
 
 class IngredientAdmin(admin.ModelAdmin):
     """Creates Ingredient Admin Panel."""
     model = Ingredient
-
     list_display = ('ingredient_name',)
     list_filter = ('ingredient_name',)
 
@@ -12,18 +13,30 @@ class IngredientAdmin(admin.ModelAdmin):
 class RecipeAdmin(admin.ModelAdmin):
     """Creates Recipe Admin Panel."""
     model = Recipe
-
-    list_display = ('recipe_name',)
+    list_display = ('recipe_name','recipe_author',
+                    'CreatedOn', 'UpdatedOn',)
     list_filter = ('recipe_name',)
 
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     """Creates RecipeIngredient Admin Panel."""
     model = RecipeIngredient
-
     list_display = ('quantity',)
 
+
+class ProfileInline(admin.StackedInline):
+    """Creates the Profile Admin Panel."""
+    model = Profile
+    can_delete = False
+    fields = ['author_name', 'bio']
+
+
+class UserAdmin(admin.ModelAdmin):
+    """Sets how Profiles are displayed in Admin Panel."""
+    inlines = [ProfileInline]
 
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
+admin.site.unregister(User)
+admin.site.register(User,UserAdmin)

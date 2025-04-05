@@ -4,13 +4,15 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('', views.base_template, name='home'),
-    path('recipes/list/', views.recipe_list, name='recipe_list'),
-    path('recipe/<int:recipe_id>/', views.recipe_ingredients,
-         name='recipe_ingredients'),
-    path('recipe/add/', views.recipe_form, name='recipe_form'),
-    path('recipe/<int:recipe_id>/add_image', views.recipe_add_image,
-         name='add_image'),
+    path("", views.base_template, name="home"),
+    path("recipes/list/", views.recipe_list, name="recipe_list"),
+    path("recipe/<int:recipe_id>/", views.recipe_ingredients,
+         name="recipe_ingredients"),
+    path("recipe/add/", views.recipe_form, name="recipe_form"),
+    path("recipe/add/ingredients/<int:recipe_id>", views.ingredients_form,
+         name="ingredient_form"),
+    path("recipe/<int:recipe_id>/add_image", views.recipe_add_image,
+         name="add_image"),
 ]
 
 if settings.DEBUG:

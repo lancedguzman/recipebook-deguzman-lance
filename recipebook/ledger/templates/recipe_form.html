@@ -6,6 +6,9 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ recipe_form.as_p }}
-        <button type="submit">Submit</button>
+        <h3>Select your ingredients</h3>
+        {{ recipe_form.ingredients }}
+        <button type="submit" name="recipeingredients_form">+ New Ingredient</button>
+        <button type="submit">Save</button>
     </form>
 {% endblock %}
